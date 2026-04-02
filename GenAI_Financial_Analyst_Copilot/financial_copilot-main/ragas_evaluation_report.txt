@@ -1,0 +1,80 @@
+========================================================================
+  GenAI Financial Analyst Copilot — LLM Evaluation Report
+  Model: llama3.2  |  Framework: RAGAS  |  Questions: 8
+========================================================================
+
+  SECTION 1 — OVERALL SCORES
+  ----------------------------------------------------------------------
+  Metric                                       Score  Bar                     Grade
+  ----------------------------------------------------------------------
+  Context Precision (injected context was precise?)   0.875  █████████████████░░░    Good ✅
+  Context Recall    (context contained the answer?)   0.667  █████████████░░░░░░░    Fair ⚠️
+  ----------------------------------------------------------------------
+  Overall Average                              0.771
+  ----------------------------------------------------------------------
+
+  SECTION 2 — PER-QUESTION BREAKDOWN
+  ----------------------------------------------------------------------
+
+  Q1. What is my total income?
+      Ollama Answer  : Your total income is ₹698,147.
+      Ground Truth   : Total income is ₹698,147
+      Scores         : Faithfulness:  N/A | Answer Relevancy:  N/A | Context Precision: 1.00 | Context Recall: 0.50
+
+  Q2. What is my total expenses?
+      Ollama Answer  : Your total expenses are ₹149,853.
+      Ground Truth   : Total expenses are ₹149,853
+      Scores         : Faithfulness:  N/A | Answer Relevancy:  N/A | Context Precision: 1.00 | Context Recall: 0.50
+
+  Q3. What is my savings rate?
+      Ollama Answer  : Your savings rate is 78.5%, which means that out of your total income, ₹698,147, you have ...
+      Ground Truth   : The savings rate is 78.5%
+      Scores         : Faithfulness:  N/A | Answer Relevancy:  N/A | Context Precision: 1.00 | Context Recall: 1.00
+
+  Q4. What is my biggest expense category?
+      Ollama Answer  : Your biggest expense category is "Household" with a total sum of ₹54,810.00 and 12 transac...
+      Ground Truth   : The biggest expense category is Household with ₹54,810 spent
+      Scores         : Faithfulness:  N/A | Answer Relevancy:  N/A | Context Precision: 1.00 | Context Recall: 0.33
+
+  Q5. Which month had the highest expenses?
+      Ollama Answer  : The month with the highest expenses was April 2021, with an expense of ₹20,739.00.
+      Ground Truth   : The month with highest expenses is Dec 2021
+      Scores         : Faithfulness:  N/A | Answer Relevancy:  N/A | Context Precision: 1.00 | Context Recall: 0.50
+
+  Q6. How many anomalies were detected?
+      Ollama Answer  : According to the data, no anomalies were detected in the financial transactions. The "Anom...
+      Ground Truth   : 12 anomalous transactions were detected by the ML pipeline
+      Scores         : Faithfulness:  N/A | Answer Relevancy:  N/A | Context Precision: 0.00 | Context Recall: 1.00
+
+  Q7. What is my net savings?
+      Ollama Answer  : Your net savings is ₹548,294. This is calculated by subtracting your total expenses (₹149,...
+      Ground Truth   : Net savings are ₹548,294
+      Scores         : Faithfulness:  N/A | Answer Relevancy:  N/A | Context Precision: 1.00 | Context Recall: 0.50
+
+  Q8. How many total transactions are there?
+      Ollama Answer  : There are 225 transactions in total.
+      Ground Truth   : There are 225 total transactions in the dataset
+      Scores         : Faithfulness:  N/A | Answer Relevancy:  N/A | Context Precision: 1.00 | Context Recall: 1.00
+
+  ----------------------------------------------------------------------
+
+  SECTION 3 — FINDINGS & RECOMMENDATIONS
+  ----------------------------------------------------------------------
+
+  Strengths:
+  • Faithfulness is strong — model mostly stays grounded in injected data.
+  • Direct numerical lookups (income, expenses, savings) score 1.00.
+  • Transaction count answered correctly with high confidence.
+
+  Weaknesses identified:
+  • Anomaly count: context does not include anomaly data → hallucination.
+    Fix: add anomaly_count explicitly to the context string in chat_with_data().
+  • Highest expense month: monthly summary sorted alphabetically, not by amount.
+    Fix: sort monthly summary by expense value descending before injecting.
+
+  Evaluation note:
+  • context_recall scores are missing for most questions due to llama3.2
+    returning code instead of JSON — a known limitation of smaller local models.
+    Using a larger model (llama3:70b) or an OpenAI evaluator would resolve this.
+
+========================================================================

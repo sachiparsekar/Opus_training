@@ -1,0 +1,9 @@
+Question,Answer,Ground Truth,faithfulness,answer_relevancy,context_precision,context_recall
+What is my total income?,"Your total income is ₹698,147.","Total income is ₹698,147",,,1.0,0.5
+What is my total expenses?,"Your total expenses are ₹149,853.","Total expenses are ₹149,853",,,1.0,0.5
+What is my savings rate?,"Your savings rate is 78.5%, which means that out of your total income, ₹698,147, you have saved ₹548,294.",The savings rate is 78.5%,,,1.0,1.0
+What is my biggest expense category?,"Your biggest expense category is ""Household"" with a total sum of ₹54,810.00 and 12 transactions. The mean expense for this category is ₹4,567.50.","The biggest expense category is Household with ₹54,810 spent",,,1.0,0.333
+Which month had the highest expenses?,"The month with the highest expenses was April 2021, with an expense of ₹20,739.00.",The month with highest expenses is Dec 2021,,,1.0,0.5
+How many anomalies were detected?,"According to the data, no anomalies were detected in the financial transactions. The ""Anomalies Detected"" field is listed as N/A (Not Applicable).",12 anomalous transactions were detected by the ML pipeline,,,0.0,1.0
+What is my net savings?,"Your net savings is ₹548,294. This is calculated by subtracting your total expenses (₹149,853) from your total income (₹698,147). The result is a positive value, indicating that you have saved more than you spent.","Net savings are ₹548,294",,,1.0,0.5
+How many total transactions are there?,There are 225 transactions in total.,There are 225 total transactions in the dataset,,,1.0,1.0
